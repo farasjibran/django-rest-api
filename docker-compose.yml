@@ -22,6 +22,14 @@ services:
       - POSTGRES_USER=todos_user
       - POSTGRES_PASSWORD=todos_password!
       - POSTGRES_DB=db_todos
+  nginx:
+    build: ./nginx
+    volumes:
+      - django_static_volume:/usr/src/app/static
+    ports:
+      - 80:80
+    links:
+      - api
 
 volumes:
   postgres_data:
